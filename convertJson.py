@@ -21,7 +21,7 @@ def convertSymptoms():
     
 def convertSymptoms():
     aList=[]
-    with open("SYMPTOMS.WIN") as infile:
+    with open("HYPOTHES.WIN") as infile:
         for line in infile:
             # print(splitted_text[0])
             # splitted_text = str(line).split()
