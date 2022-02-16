@@ -2,12 +2,22 @@
 import json
 
 
-def getRft(id):
-    fileName= "./descript/"+str(id)+".rtf"
-    with open(fileName) as infile:
-        content = infile.read()
-        text = rtf_to_text(content)
-        return(text)
+def convertSymptoms():
+    aList=[]
+    with open("SYMPTOMS.WIN") as infile:
+        for line in infile:
+            # print(splitted_text[0])
+            # splitted_text = str(line).split()
+            # print(splitted_text[0])
+            # # del s
+            # s={}
+            # s[splitted_text[0]]=line
+            aList.append(line)
+    jsonString = json.dumps(aList, ensure_ascii=False)
+    jsonFile = open("Symptoms.json", "w", encoding="UTF-8")
+    jsonFile.write(jsonString)
+    jsonFile.close()
+        
     # print(text)
     
 #  0.02      3 1.0 0.01 
@@ -31,24 +41,4 @@ if __name__ == '__main__':
     # jsonFile.close()
     # a=getRft(11)
     # print(a)
-    
-    fileObject = open("Symptoms.json", "r", encoding="UTF-8")
-    jsonContent = fileObject.read()
-    aList = json.loads(jsonContent)
-    for item in aList:
-        print(item)
-        splitted_text = str(item).split()
-        print(splitted_text[0])
-        ans=input()
-        pmax=1.0
-        pmin = 0.01
-        vv=0.02
-        (vv, up, down)=proc(ans, vv, pmax, pmin)
-    
-    (vv, up, down)=proc(ans, vv, pmax, pmin)
-    print(vv)
-    print(down)
-    print(up)
-    
-    
-    
+    convertSymptoms()
