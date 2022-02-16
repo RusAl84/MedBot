@@ -17,6 +17,23 @@ def convertSymptoms():
     jsonFile = open("Symptoms.json", "w", encoding="UTF-8")
     jsonFile.write(jsonString)
     jsonFile.close()
+    
+    
+def convertSymptoms():
+    aList=[]
+    with open("SYMPTOMS.WIN") as infile:
+        for line in infile:
+            # print(splitted_text[0])
+            # splitted_text = str(line).split()
+            # print(splitted_text[0])
+            # # del s
+            # s={}
+            # s[splitted_text[0]]=line
+            aList.append(line)
+    # jsonString = json.dumps(aList, ensure_ascii=False)
+    # jsonFile = open("desc.json", "w", encoding="UTF-8")
+    # jsonFile.write(jsonString)
+    # jsonFile.close()
         
     # print(text)
     
