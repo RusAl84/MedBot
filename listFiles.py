@@ -12,8 +12,7 @@ def getRft(filename):
         return(text)
     # print(text)
 
-
-if __name__ == '__main__':
+def convertSym():
     files = os.listdir(dirname)
     # print(files)
     aList=[]    
@@ -22,9 +21,17 @@ if __name__ == '__main__':
         # print(rtf)    
         splitted_text = str(rtf).split()
         s={}
-        s['name']=splitted_text[0]
+        s['name']=splitted_text[0]+' ' + splitted_text[1]
         s['file']=file
         aList.append(s)
+    jsonString = json.dumps(aList, ensure_ascii=False)
+    jsonFile = open("Sym.json", "w", encoding="UTF-8")
+    jsonFile.write(jsonString)
+    jsonFile.close()    
+    
+    
 
+if __name__ == '__main__':
+    convertSym()
     
     
