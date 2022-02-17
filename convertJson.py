@@ -53,7 +53,7 @@ def convertHyp():
                     if (nNum % 3)==2:
                         pmin=item
                     nNum+=1
-                s['plist']=plist   
+                s['pList']=plist   
             if (lineNum % 3)==2:    
                 aList.append(s)
                 s={}

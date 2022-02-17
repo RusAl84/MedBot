@@ -58,11 +58,13 @@ def drawDiag():
         vv = item['vv']
         if float(vv)>0.9:
             str1 += "\n" + item["descr"]
-    return str1
-    
-if __name__ == '__main__':
+    if len(str1)>19:
+        return str1
+    return ""
 
-    
+def initData():
+    global qList
+    global hList
     fileObject = open("que.json", "r", encoding="UTF-8")
     jsonContent = fileObject.read()
     qList = json.loads(jsonContent)
@@ -70,10 +72,14 @@ if __name__ == '__main__':
     jsonContent = fileObject.read()
     hList = json.loads(jsonContent)
     
+if __name__ == '__main__':
+
+    initData()
+    
     for i in range(30):
         q=getQuest()
         print(q)
-        ans=100
+        ans=90
         refresh(ans)
         d=drawDiag()
         print(d)
