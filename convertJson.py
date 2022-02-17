@@ -6,15 +6,21 @@ def convertSymptoms():
     aList=[]
     with open("SYMPTOMS.WIN") as infile:
         for line in infile:
-            # print(splitted_text[0])
-            # splitted_text = str(line).split()
+
+            splitted_text = str(line).split()
             # print(splitted_text[0])
             # # del s
             # s={}
-            # s[splitted_text[0]]=line
-            aList.append(line)
+            # s[splitted_text[0]]=lin
+            s={}
+            s['id']=splitted_text[0]
+            str1=""
+            for i in range(1,len(splitted_text)):
+                str1+=" " + splitted_text[i]
+            s['q']=str1
+            aList.append(s)
     jsonString = json.dumps(aList, ensure_ascii=False)
-    jsonFile = open("Symptoms.json", "w", encoding="UTF-8")
+    jsonFile = open("que.json", "w", encoding="UTF-8")
     jsonFile.write(jsonString)
     jsonFile.close()
     
@@ -80,4 +86,5 @@ if __name__ == '__main__':
     # jsonFile.close()
     # a=getRft(11)
     # print(a)
+    convertSymptoms()
     convertHyp()

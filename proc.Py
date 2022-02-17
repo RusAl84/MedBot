@@ -35,7 +35,7 @@ if __name__ == '__main__':
     fileObject = open("Symptoms.json", "r", encoding="UTF-8")
     jsonContent = fileObject.read()
     sList = json.loads(jsonContent)
-    for item in aList:
+    for item in sList:
         print(item)
         splitted_text = str(item).split()
         print(splitted_text[0])
