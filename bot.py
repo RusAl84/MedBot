@@ -90,6 +90,8 @@ def get_text_messages(message):
     elif str(message.text).lower() == "/n":
         initData()
         bot.send_message(message.from_user.id, getQuest())
+    elif splitted_text[0] == "/i":
+        bot.send_message(message.from_user.id, getRft(splitted_text[1]))
     elif str(message.text).lower() == "/about":
         with open("descr.txt", encoding="UTF-8") as infile:
             content = infile.read()
