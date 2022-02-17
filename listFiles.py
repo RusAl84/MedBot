@@ -21,8 +21,12 @@ def convertSym():
         # print(rtf)    
         splitted_text = str(rtf).split()
         s={}
-        s['name']=splitted_text[0]+' ' + splitted_text[1]
+        if splitted_text[1]=="Описание:":
+            s['name']=splitted_text[0]
+        else:
+            s['name']=splitted_text[0]+' ' + splitted_text[1]
         s['file']=file
+        s['id']=file.replace('.rtf','')
         aList.append(s)
     jsonString = json.dumps(aList, ensure_ascii=False)
     jsonFile = open("Sym.json", "w", encoding="UTF-8")

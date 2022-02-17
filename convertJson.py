@@ -19,24 +19,46 @@ def convertSymptoms():
     jsonFile.close()
     
     
-def convertSymptoms():
+def convertHyp():
     aList=[]
     with open("HYPOTHES.WIN") as infile:
+        s={}
+        lineNum=0
         for line in infile:
-            # print(splitted_text[0])
-            # splitted_text = str(line).split()
-            # print(splitted_text[0])
-            # # del s
-            # s={}
-            # s[splitted_text[0]]=line
-            aList.append(line)
-    # jsonString = json.dumps(aList, ensure_ascii=False)
-    # jsonFile = open("desc.json", "w", encoding="UTF-8")
-    # jsonFile.write(jsonString)
-    # jsonFile.close()
-        
-    # print(text)
+            if (lineNum % 3)==0:
+                s['descr']=line            
+            if lineNum%3==1:
+                splitted_text = str(line).split()
+                s['vv']=splitted_text[0]
+                # print(len(splitted_text))
+                nList=[]
+                for i in range(1,len(splitted_text)):
+                    nList.append(splitted_text[i])
+                # print(nList)
+                nNum=0
+                vv= pmax= pmin=0
+                plist=[]
+                for item in nList:
+                    if (nNum % 3)==0 and nNum>0:
+                        vv=item
+                        plist.append([vv,pmax,pmin])
+                    if (nNum % 3)==1:
+                        pmax=item
+                    if (nNum % 3)==2:
+                        pmin=item
+                    nNum+=1
+                s['plist']=plist   
+            if (lineNum % 3)==2:    
+                aList.append(s)
+                s={}
+            lineNum+=1
+            
+    jsonString = json.dumps(aList, ensure_ascii=False)
+    jsonFile = open("Hyp.json", "w", encoding="UTF-8")
+    jsonFile.write(jsonString)
+    jsonFile.close()
     
+
 #  0.02      3 1.0 0.01 
 def proc(ans, vv, pmax, pmin):
     up = up = ((2 * pmax - 1) * ans / 100 + 1 - pmax) * vv;
@@ -58,4 +80,4 @@ if __name__ == '__main__':
     # jsonFile.close()
     # a=getRft(11)
     # print(a)
-    convertSymptoms()
+    convertHyp()
