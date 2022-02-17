@@ -84,12 +84,25 @@ def get_text_messages(message):
     if str(message.text).lower() == "привет":
         bot.send_message(message.from_user.id, helpStr)
     elif str(message.text).lower() == "/help":
-        bot.send_message(message.from_user.id, "MedBot - Многофункциональный сервис для медицинской диагностики заболеваний. Внимание: при любом диагнозе необходима консультация врача! \n Список команд: \n /q - ответить на следующий вопрос\n число от 0 до 100 в % насколько верно утверждение\n /n - Начать опрос (начать заново) \n ")
+        bot.send_message(message.from_user.id, "MedBot - Многофункциональный сервис для медицинской диагностики заболеваний. Внимание: при любом диагнозе необходима консультация врача! \n Список команд: \n /q - ответить на следующий вопрос\n число от 0 до 100 в % насколько верно утверждение\n /n - Начать опрос (начать заново) \n /info получить информацию о диагнозе \n /i \"номер\" вывести информацию о диагнозе \n /about - О проекте \n ")
     elif str(message.text).lower() == "/q":
         bot.send_message(message.from_user.id, getQuest())
     elif str(message.text).lower() == "/n":
         initData()
         bot.send_message(message.from_user.id, getQuest())
+    elif str(message.text).lower() == "/about":
+        with open("descr.txt", encoding="UTF-8") as infile:
+            content = infile.read()
+        bot.send_message(message.from_user.id, content)
+    elif str(message.text).lower() == "/info":
+        fileObject = open("Sym.json", "r", encoding="UTF-8")
+        jsonContent = fileObject.read()
+        symList = json.loads(jsonContent)
+        str1="Список заболеваний:"
+        for item in symList:
+            str1+="\n"+item['id']+" "+ item['name']
+        str1+="\n ввидите /i \"номер\" вывести информацию о диагнозе \n"
+        bot.send_message(message.from_user.id, str1)
     elif isinstance(int(splitted_text[0]), int):
         ans=splitted_text[0]
         print(ans)
